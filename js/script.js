@@ -8,6 +8,11 @@ Consegna)
 // dichiarazione della variabile bottone
 const playButton = document.getElementById('play');
 console.log(playButton);
+//dichiarazione variabile al punteggio
+let score = document.getElementById('score');
+console.log(score);
+//dichiarazione variabile punteggio
+let punteggio = 0;
 // dichiarazione variabile dell'area di gioco
 const playArea = document.querySelector('.bg-acquamarine');
 console.log(playArea);
@@ -45,23 +50,57 @@ playButton.addEventListener('click', function(){
         console.log(grid);
         //al click si aggancia l'elemento creato
         playArea.append(grid);
+        //creo array numeri random
+        const newArrNum = genArrayRandomNum(1, 100, 100);
+        console.log(newArrNum);
 
         //creazione quadratini nella griglia principale
-        //ciclo 100 volte la creazione del quadratino
-        for (let i = 1; i <= 100; i++) {
+        //ciclo n volte la creazione del quadratino
+        for (let i = 0; i < newArrNum.length; i++) {
             //dichiaro la variabile n che farà da contatore aLLe interazioni
             let n = i;
+            //dichiarazione variabile ncasual(bombe)
+            let nCasual = newArrNum[n];
+            console.log(nCasual);
             //dichiaro la funzione che crea i quadrati
             const newElement = creaElem('div', 'square');
             //creo la variabile che contiene il numero della casella iterata
+            console.log(newElement);
             let nCasella = document.createTextNode(`${n}`);
             //e lo appendo alla casella generata
             newElement.append(nCasella);
+            //se l'iterazione è salva o con bomba inserirà classi diverse
+            if (nCasual % 3 === 0) {
+                //ogni iterazione casuale aggiunge classe bomb
+                newElement.classList.add('bomb');
+            } else {
+                // altrimenti aggiunge la casella safe
+                newElement.classList.add('safe');
+
+            }
             //evento click sulla casella iterata
             newElement.addEventListener('click',
                 function () {
+                    //il valore del punteggio incrementa se si clicca sulla casella safe
+                    punteggio++;
                     console.log('Hai cliccato la casella n°' + i);
                     newElement.classList.add('clicked');
+                    //se il numero casuale ha lo stesso cvalore della bomba
+                    if (nCasual % 3 === 0) {
+                        //alert
+                        newElement.classList.add('bomb');
+                        alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
+                        history.go(0);
+
+                    } else {
+                        console.log(punteggio);
+                        score.innerHTML = 'Il tuo punteggio: ' + punteggio;
+                    };
+                    //se il punteggio raggiunge 33 la partita termina con una vittoria
+                    if (punteggio === 33) {
+                        alert('Incredibile! Hai vinto!! Il tuo punteggio è: ' + punteggio);
+                        history.go(0);
+                    }
                 }
 
             );
@@ -94,29 +133,62 @@ playButton.addEventListener('click', function(){
         console.log(grid);
         //al click si aggancia l'elemento creato
         playArea.append(grid);
+        //creo array numeri random
+        const newArrNum = genArrayRandomNum(1, 81, 81);
+        console.log(newArrNum);
         
         //creazione quadratini nella griglia principale
-        //ciclo 100 volte la creazione del quadratino
-        for (let i = 1; i <= 81; i++) {
+        //ciclo n volte la creazione del quadratino
+        for (let i = 0; i < newArrNum.length; i++) {
             //dichiaro la variabile n che farà da contatore aLLe interazioni
             let n = i;
+            //dichiarazione variabile ncasual(bombe)
+            let nCasual = newArrNum[n];
+            console.log(nCasual);
             //dichiaro la funzione che crea i quadrati
             const newElement = creaElem('div', 'squarem');
+            console.log(newElement);
             //creo la variabile che contiene il numero della casella iterata
             let nCasella = document.createTextNode(`${n}`);
             //e lo appendo alla casella generata
             newElement.append(nCasella);
+            //se l'iterazione è salva o con bomba inserirà classi diverse
+            if (nCasual % 3 === 0) {
+                //ogni iterazione casuale aggiunge classe bomb
+                newElement.classList.add('bomb');
+            } else {
+                // altrimenti aggiunge la casella safe
+                newElement.classList.add('safe');
+
+            }
             //evento click sulla casella iterata
             newElement.addEventListener('click',
-            function () {
-                console.log('Hai cliccato la casella n°' + i);
-                newElement.classList.add('clicked');
-            }
+                function () {
+                    //il valore del punteggio incrementa se si clicca sulla casella safe
+                    punteggio++;
+                    console.log('Hai cliccato la casella n°' + i);
+                    newElement.classList.add('clicked');
+                    //se il numero casuale ha lo stesso cvalore della bomba
+                    if (nCasual % 3 === 0) {
+                        //alert
+                        newElement.classList.add('bomb');
+                        alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
+                        history.go(0);
+
+                    } else {
+                        console.log(punteggio);
+                        score.innerHTML = 'Il tuo punteggio: ' + punteggio;
+                    };
+                    //se il punteggio raggiunge 33 la partita termina con una vittoria
+                    if (punteggio === 33) {
+                        alert('Incredibile! Hai vinto!! Il tuo punteggio è: ' + punteggio);
+                        history.go(0);
+                    }
+                }
             
             );
             //appendo alla griglia 100 volte la funzione che crea i quadratini
             grid.append(newElement);
-            
         }
     };
     if(difficult === 'hard') {
@@ -145,15 +217,12 @@ playButton.addEventListener('click', function(){
         //creo array numeri random
         const newArrNum = genArrayRandomNum(1, 49 ,49);
         console.log(newArrNum);
-
-        let punteggio = 0;
         
-        
-        //creazione quadratini nella griglia principale
-        //ciclo 100 volte la creazione del quadratino
+        //ciclo n volte la creazione del quadratino
         for (let i = 0; i < newArrNum.length; i++) {
             //dichiaro la variabile n che farà da contatore aLLe interazioni
             let n = i;
+            //dichiarazione variabile ncasual(bombe)
             let nCasual = newArrNum[n];
             console.log(nCasual);
             //dichiaro la funzione che crea i quadrati
@@ -166,22 +235,34 @@ playButton.addEventListener('click', function(){
             newElement.append(nCasella);
             //se l'iterazione è salva o con bomba inserirà classi diverse
             if (nCasual % 3 === 0){
+                //ogni iterazione casuale aggiunge classe bomb
                 newElement.classList.add('bomb');
-
             } else {
+                // altrimenti aggiunge la casella safe
                 newElement.classList.add('safe');
                 
             }
             //evento click sulla casella iterata
             newElement.addEventListener('click',
             function () {
+                //il valore del punteggio incrementa se si clicca sulla casella safe
                 punteggio++;
                 console.log('Hai cliccato la casella n°' + i);
                 newElement.classList.add('clicked');
+                //se il numero casuale ha lo stesso cvalore della bomba
                 if (nCasual % 3 === 0) {
-                    alert('boom')
+                    //alert
+                    alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
+                    history.go(0);
+
                 } else {
                     console.log(punteggio);
+                    score.innerHTML = 'Il tuo punteggio: ' + punteggio;
+                };
+                //se il punteggio raggiunge 33 la partita termina con una vittoria
+                if (punteggio === 33 ){
+                    alert('Incredibile! Hai vinto!! Il tuo punteggio è: ' + punteggio);
+                    history.go(0);
                 }
             }
             

@@ -115,6 +115,13 @@ div.gride .square {
 .square.clicked {
     background-color: aqua;
 }
+.square.clicked.safe {
+    background-color: blue;
+}
+
+.square.clicked.bomb {
+    background-color: red;
+}
 /* medium difficult */
 div.gride .squarem {
     width: calc(100% / 9);
@@ -130,6 +137,13 @@ div.gride .squarem:active {
 
 .squarem.clicked{
     background-color: aqua;
+}
+.squarem.clicked.safe {
+    background-color: blue;
+}
+
+.squarem.clicked.bomb {
+    background-color: red;
 }
 /* hard difficult */
 div.gride .squareh {
