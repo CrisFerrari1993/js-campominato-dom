@@ -69,8 +69,8 @@ playButton.addEventListener('click', function(){
             let nCasella = document.createTextNode(`${n}`);
             //e lo appendo alla casella generata
             newElement.append(nCasella);
-            //se l'iterazione è salva o con bomba inserirà classi diverse
-            if (nCasual % 3 === 0) {
+            //se l'iterazione è safe o con bomba inserirà classi diverse
+            if (nCasual % 6 === 0) {
                 //ogni iterazione casuale aggiunge classe bomb
                 newElement.classList.add('bomb');
             } else {
@@ -86,7 +86,7 @@ playButton.addEventListener('click', function(){
                     console.log('Hai cliccato la casella n°' + i);
                     newElement.classList.add('clicked');
                     //se il numero casuale ha lo stesso cvalore della bomba
-                    if (nCasual % 3 === 0) {
+                    if (nCasual % 6 === 0) {
                         punteggio = punteggio - 1;
                         //alert
                         alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
@@ -97,7 +97,7 @@ playButton.addEventListener('click', function(){
                         score.innerHTML = 'Il tuo punteggio: ' + punteggio;
                     };
                     //se il punteggio raggiunge 33 la partita termina con una vittoria
-                    if (punteggio === 33) {
+                    if (punteggio === 84) {
                         alert('Incredibile! Hai vinto!! Il tuo punteggio è: ' + punteggio);
                         history.go(0);
                     }
@@ -153,7 +153,7 @@ playButton.addEventListener('click', function(){
             //e lo appendo alla casella generata
             newElement.append(nCasella);
             //se l'iterazione è salva o con bomba inserirà classi diverse
-            if (nCasual % 3 === 0) {
+            if (nCasual % 5 === 0) {
                 //ogni iterazione casuale aggiunge classe bomb
                 newElement.classList.add('bomb');
             } else {
@@ -169,7 +169,7 @@ playButton.addEventListener('click', function(){
                     console.log('Hai cliccato la casella n°' + i);
                     newElement.classList.add('clicked');
                     //se il numero casuale ha lo stesso cvalore della bomba
-                    if (nCasual % 3 === 0) {
+                    if (nCasual % 5 === 0) {
                         punteggio = punteggio - 1;
                         //alert
                         alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
@@ -180,7 +180,7 @@ playButton.addEventListener('click', function(){
                         score.innerHTML = 'Il tuo punteggio: ' + punteggio;
                     };
                     //se il punteggio raggiunge 33 la partita termina con una vittoria
-                    if (punteggio === 33) {
+                    if (punteggio === 65) {
                         alert('Incredibile! Hai vinto!! Il tuo punteggio è: ' + punteggio);
                         history.go(0);
                     }
