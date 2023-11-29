@@ -32,6 +32,13 @@ nav {
     height: 50px;
     align-self: center;
 }
+/* score container */
+.score-container{
+    display: flex;
+}
+.score-container p{
+    align-self: center;
+}
 /* nav h1 rules */
 nav h1{
     align-self: center;
@@ -141,7 +148,12 @@ div.gride .squareh:active {
 .squareh.clicked {
     background-color: aqua;
 }
-
+.squareh.clicked.safe{
+    background-color: blue;
+}
+.squareh.clicked.bomb{
+    background-color: red;
+}
 
 /*******************************
     FOOTER SETTINGS

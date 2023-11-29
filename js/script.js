@@ -142,23 +142,47 @@ playButton.addEventListener('click', function(){
         console.log(grid);
         //al click si aggancia l'elemento creato
         playArea.append(grid);
+        //creo array numeri random
+        const newArrNum = genArrayRandomNum(1, 49 ,49);
+        console.log(newArrNum);
+
+        let punteggio = 0;
+        
         
         //creazione quadratini nella griglia principale
         //ciclo 100 volte la creazione del quadratino
-        for (let i = 1; i <= 49; i++) {
+        for (let i = 0; i < newArrNum.length; i++) {
             //dichiaro la variabile n che farà da contatore aLLe interazioni
             let n = i;
+            let nCasual = newArrNum[n];
+            console.log(nCasual);
             //dichiaro la funzione che crea i quadrati
             const newElement = creaElem('div', 'squareh');
+            //definisco variabile che assegna i numeri casuali dell'array
+            console.log(newElement);
             //creo la variabile che contiene il numero della casella iterata
             let nCasella = document.createTextNode(`${n}`);
             //e lo appendo alla casella generata
             newElement.append(nCasella);
+            //se l'iterazione è salva o con bomba inserirà classi diverse
+            if (nCasual % 3 === 0){
+                newElement.classList.add('bomb');
+
+            } else {
+                newElement.classList.add('safe');
+                
+            }
             //evento click sulla casella iterata
             newElement.addEventListener('click',
             function () {
+                punteggio++;
                 console.log('Hai cliccato la casella n°' + i);
                 newElement.classList.add('clicked');
+                if (nCasual % 3 === 0) {
+                    alert('boom')
+                } else {
+                    console.log(punteggio);
+                }
             }
             
             );
@@ -172,7 +196,27 @@ playButton.addEventListener('click', function(){
         let difficult = document.getElementById('difficolta');
         difficult.style.border = '1px solid red';  
     };
+    //funzione che crea un array con orine random di numeri in range minmax
+    function genArrayRandomNum(minNum, maxNum, arrLenght) {
+        //array vuoto da popolare 
+        const arrayToGen = [];
 
+        //ciclo che poplerà l'array
+        while(arrayToGen.length < arrLenght) {
+            //generare num random in un range
+            let newNum = generaNumMinMax(minNum, maxNum);
+            //se un num generato non èp presente nell'array
+            if (!arrayToGen.includes(newNum)){
+                //lo inserisco nell'array
+                arrayToGen.push(newNum);
+            }
+        }
+        return arrayToGen;
+    }
+    //funzione che genera numeri random in range min max
+    function generaNumMinMax(min, max){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
     //funzione crea quadratimi
     function creaElem(tagType, classname) {
         const elementoCorrente = document.createElement(tagType);
