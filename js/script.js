@@ -87,8 +87,8 @@ playButton.addEventListener('click', function(){
                     newElement.classList.add('clicked');
                     //se il numero casuale ha lo stesso cvalore della bomba
                     if (nCasual % 3 === 0) {
+                        punteggio = punteggio - 1;
                         //alert
-                        newElement.classList.add('bomb');
                         alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
                         history.go(0);
 
@@ -170,8 +170,8 @@ playButton.addEventListener('click', function(){
                     newElement.classList.add('clicked');
                     //se il numero casuale ha lo stesso cvalore della bomba
                     if (nCasual % 3 === 0) {
+                        punteggio = punteggio - 1;
                         //alert
-                        newElement.classList.add('bomb');
                         alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
                         history.go(0);
 
@@ -252,6 +252,7 @@ playButton.addEventListener('click', function(){
                 //se il numero casuale ha lo stesso cvalore della bomba
                 if (nCasual % 3 === 0) {
                     //alert
+                    punteggio = punteggio -1;
                     alert('BOOM!! Hai perso. Il tuo punteggio è: ' + punteggio);
                     history.go(0);
 
